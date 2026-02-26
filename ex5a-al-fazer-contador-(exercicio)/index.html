@@ -1,1 +1,31 @@
- <!-- 1ª Digitação (Resolva aqui o exercício) -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exeríco 5a</title>
+
+</head>
+<body>
+    <button id="contador">Clique aqui!</button>
+    <p id="paragrafo">Contador: 0</p>
+
+    <script>
+        let contador = 0;
+
+        const button = document.getElementById("contador");
+        const paragrafo = document.getElementById("paragrafo");
+
+        button.addEventListener('click', function () {
+            contador++;
+            paragrafo.textContent = "Contador: " + contador;
+
+            if (contador % 2 === 0) {
+                paragrafo.style.backgroundColor = "green";
+            } else {
+                paragrafo.style.backgroundColor = "red";
+            }
+        });
+    </script>
+</body>
+</html>
