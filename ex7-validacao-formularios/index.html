@@ -43,46 +43,49 @@
     const form = document.querySelector('#signupForm');
 
     // Adiciona um evento de submit ao formulário (event.preventDefault)
+    form.addEventListener('submit', (event) => {
 
-    // 1ª Digitação (Aqui)
+        // Impede o envio padrão do formulário
+        event.preventDefault()  // O evento padrão de um formulário é enviar seus dados ao servidor e recarregar a página. O uso de event.preventDefault() bloqueia esse comportamento, permitindo validar os campos e controlar como os dados serão enviados.
 
-      // Impede o envio padrão do formulário
-      
+        // Obtém os valores dos campos e remove espaços em branco
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const password = form.password.value.trim();
 
-      // O evento padrão de um formulário é enviar seus dados ao servidor e recarregar a página. O uso de event.preventDefault() bloqueia esse comportamento, permitindo validar os campos e controlar como os dados serão enviados.
+        // Variável para controlar se o formulário é válido
+        let isValid = true;
 
-      // Obtém os valores dos campos e remove espaços em branco
+        // Validação do nome
+        if (name === '') {
+          document.querySelector('#nameError').textContent = 'Nome é obrigatório.';
+          isValid = false; // Formulário inválido
+        } else {
+          document.querySelector('#nameError').textContent = ''; // Limpa a mensagem de erro
+        }
 
+        // Validação do e-mail
+        if (email === '' || !email.includes('@')) {
+          document.querySelector('#emailError').textContent = 'E-mail inválido.';
+          isValid = false; // Formulário inválido
+        } else {
+          document.querySelector('#emailError').textContent = ''; // Limpa a mensagem de erro
+        }
 
-      // Variável para controlar se o formulário é válido
-      
+        // Validação da senha
+        if (password.length < 6) {
+          document.querySelector('#passwordError').textContent = 'Senha deve ter pelo menos 6 caracteres.';
+          isValid = false; // Formulário inválido
+        } else {
+          document.querySelector('#passwordError').textContent = ''; // Limpa a mensagem de erro
+        }
 
-      // Validação do nome
-      if (name === '') {
-        document.querySelector('#nameError').textContent = 'Nome é obrigatório.';
-        isValid = false; // Formulário inválido
-      } else {
-        document.querySelector('#nameError').textContent = ''; // Limpa a mensagem de erro
-      }
-
-      // Validação do e-mail
-      if (email === '' || !email.includes('@')) {
-        document.querySelector('#emailError').textContent = 'E-mail inválido.';
-        isValid = false; // Formulário inválido
-      } else {
-        document.querySelector('#emailError').textContent = ''; // Limpa a mensagem de erro
-      }
-
-      // Validação da senha
-      if (password.length < 6) {
-        document.querySelector('#passwordError').textContent = 'Senha deve ter pelo menos 6 caracteres.';
-        isValid = false; // Formulário inválido
-      } else {
-        document.querySelector('#passwordError').textContent = ''; // Limpa a mensagem de erro
-      }
-
-      // Se o formulário for válido, exibe uma mensagem e reseta os campos
-
+        // Se o formulário for válido, exibe uma mensagem e reseta os campos
+        if (isValid) {
+          alert('Cadastro realizado com sucesso!')
+          form.reset();  // Limpa os controles do formulário
+        }
+    });
 
   </script>
 </body>
